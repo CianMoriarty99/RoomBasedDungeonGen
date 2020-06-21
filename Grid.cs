@@ -14,9 +14,10 @@ public class Grid : MonoBehaviour
     
     void Start()
     {
-        worldSize = numberOfRooms * roomSize *2;
+        worldSize = numberOfRooms * roomSize + 1;
         InitialiseGrid();
         GenerateDungeon(numberOfRooms, roomSize);
+        FixWalls();
     }
 
     void Update()
@@ -64,7 +65,7 @@ public class Grid : MonoBehaviour
 
         }
 
-        
+
 
     }
 
@@ -82,13 +83,12 @@ public class Grid : MonoBehaviour
 
         for (int x = posX; x < (posX + size); x++){
             
-
             if(x != (posX + size/2)){
             //Bottom wall of room
                 if (grid[x, posY].tileType == 0) {
 
-                        grid[x, posY].tileType = 2;
-                        Instantiate(wallTile, new Vector3(x, posY,0) , Quaternion.identity);
+                    grid[x, posY].tileType = 2;
+                    Instantiate(wallTile, new Vector3(x, posY,0) , Quaternion.identity);
 
                 }
 
@@ -100,6 +100,7 @@ public class Grid : MonoBehaviour
             }
 
 			for (int y = posY; y < (posY + size); y++){
+
 
                 if(y != (posY + size/2)){
 
@@ -121,8 +122,28 @@ public class Grid : MonoBehaviour
                         grid[x,y].tileType = 1;
                         Instantiate(floorTile, new Vector3(x,y,0) , Quaternion.identity);
                     }
+                    
+
                 }
             
+        }
+
+
+
+        
+    }
+
+    void FixWalls(){
+
+        for (int x = 0; x < worldSize; x++){ 
+			for (int y = 0; y < worldSize; y++){
+                
+                if (grid[x,y].tileType == 1)
+                    if(grid[x+1,y].tileType == 0 || grid[x-1,y].tileType == 0 || grid[x,y+1].tileType == 0 || grid[x,y-1].tileType == 0){
+                        grid[x,y].tileType = 2;
+                        Instantiate(wallTile, new Vector3(x,y,0) , Quaternion.identity);
+                    }
+            }
         }
     }
 
