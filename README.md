@@ -1,3 +1,3 @@
 # RoomBasedDungeonGen
 
-![Screenshot](example.png)
+![Screenshot](Example.png)
