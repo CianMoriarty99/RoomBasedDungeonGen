@@ -237,9 +237,14 @@ MonoBehaviour:
     type: 3}
   wallTile: {fileID: 6742030195777047869, guid: d29c028d60cde3c44b78694e88052c7b,
     type: 3}
+  enemyPrefab: {fileID: 6684222462261756227, guid: 2a6ba49728c053d4fb2a6d498c7d3145,
+    type: 3}
+  playerPrefab: {fileID: 1548234116898133576, guid: 9c0721a12699dd34a8bd2a32c4ef687e,
+    type: 3}
   worldSize: 100
-  roomSize: 9
-  numberOfRooms: 20
+  roomSize: 7
+  numberOfRooms: 10
+  maxMobsPerRoom: 5
 --- !u!4 &1824598364
 Transform:
   m_ObjectHideFlags: 0
